@@ -27,5 +27,13 @@ namespace PresentacioGUI
             this.Close();
             Login login = new Login();
         }
+
+        private void RegistrarUsuarios_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
+
+    //HOLA MUNDO
 }

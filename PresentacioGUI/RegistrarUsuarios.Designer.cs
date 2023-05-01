@@ -242,6 +242,7 @@
             this.Controls.Add(this.pnlLogin);
             this.Name = "RegistrarUsuarios";
             this.Text = "RegistrarUsuarios";
+            this.Load += new System.EventHandler(this.RegistrarUsuarios_Load);
             this.pnlImg.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlLogin.ResumeLayout(false);
