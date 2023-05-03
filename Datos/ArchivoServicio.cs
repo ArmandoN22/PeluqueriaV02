@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class ArchivoCliente : IArchivo<Cliente>
+    public class ArchivoServicio : IArchivo<Servicios>
     {
-        string ruta = "cliente.txt";
-        public bool Guardar(Cliente cliente)
+        string ruta = "servicios.txt";
+        public bool Guardar(Servicios servicio)
         {
             try
             {
                 StreamWriter sw = new StreamWriter(ruta, true);
-                sw.WriteLine(cliente.ToString());
+                sw.WriteLine(servicio.ToString());
                 sw.Close();
                 return true;
 
@@ -29,17 +29,12 @@ namespace Datos
             }
         }
 
-        public object Guardar(Login usuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Cliente> Leer()
+        public List<Servicios> Leer()
         {
             try
             {
                 StreamReader reader = new StreamReader(ruta);
-                var list = new List<Cliente>();
+                var list = new List<Servicios>();
                 while (!reader.EndOfStream)
                 {
                     string linea = reader.ReadLine();
@@ -54,19 +49,17 @@ namespace Datos
             }
         }
 
-        public Cliente Mapear(string linea)
+        public Servicios Mapear(string linea)
         {
             try
             {
-                var cliente = new Cliente();
+                var servicio = new Servicios();
                 var aux = linea.Split(';');
 
-                cliente.Id = int.Parse(aux[0]);
-                cliente.Nombre = aux[1];
-                cliente.Apellido = aux[2];
-                cliente.Telefono = aux[3];
-                cliente.Correo = aux[4];
-                return cliente;
+                servicio.Id_Servicio = int.Parse(aux[0]);
+                servicio.Nombre = aux[1];
+                servicio.Precio = float.Parse(aux[2]);
+                return servicio;
             }
             catch (Exception)
             {
@@ -75,9 +68,7 @@ namespace Datos
             }
         }
 
-        
-
-        public bool Modificar(List<Cliente> List)
+        public bool Modificar(List<Servicios> List)
         {
             throw new NotImplementedException();
         }

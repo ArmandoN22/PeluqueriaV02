@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,8 @@ namespace PresentacioGUI
             InitializeComponent();
         }
 
+       // Logica.ServicioLogin ServicioLogin = new Logica.ServicioLogin();
+
         private void btnVoler_Click(object sender, EventArgs e)
         {
             Salir();
@@ -33,7 +36,12 @@ namespace PresentacioGUI
 
         }
 
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        
     }
 
-    //HOLA MUNDO
 }

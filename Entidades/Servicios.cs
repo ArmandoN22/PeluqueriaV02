@@ -12,7 +12,7 @@ namespace Entidades
         {
         }
 
-        public Servicios(int id_Servicio, string nombre, double precio)
+        public Servicios(int id_Servicio, string nombre, float precio)
         {
             Id_Servicio = id_Servicio;
             Nombre = nombre;
@@ -21,6 +21,12 @@ namespace Entidades
 
         public int Id_Servicio { get; set; }
         public string Nombre { get; set; }
-        public double Precio { get; set; }
+        public float Precio { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id_Servicio};{Nombre};{Precio}";
+        }
+
     }
 }

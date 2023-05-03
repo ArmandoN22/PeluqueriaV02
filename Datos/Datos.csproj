@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchivoCliente.cs" />
+    <Compile Include="ArchivoLogin.cs" />
+    <Compile Include="ArchivoServicio.cs" />
     <Compile Include="IArchivo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

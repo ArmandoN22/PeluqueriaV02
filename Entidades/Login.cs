@@ -23,5 +23,9 @@ namespace Entidades
         public string Contraseña { get; set; }
         public string CorreoElectronico { get; set; }
 
+        public override string ToString()
+        {
+            return $"{Usuario};{Contraseña};{CorreoElectronico}";
+        }
     }
 }

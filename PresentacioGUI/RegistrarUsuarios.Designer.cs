@@ -124,7 +124,7 @@
             this.pnlCorreo.Name = "pnlCorreo";
             this.pnlCorreo.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.pnlCorreo.Size = new System.Drawing.Size(280, 30);
-            this.pnlCorreo.TabIndex = 6;
+            this.pnlCorreo.TabIndex = 5;
             // 
             // txtCorreo
             // 
@@ -143,14 +143,16 @@
             // 
             this.btnRegistrar.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.ForeColor = System.Drawing.Color.White;
             this.btnRegistrar.Location = new System.Drawing.Point(54, 314);
             this.btnRegistrar.Margin = new System.Windows.Forms.Padding(0);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(230, 44);
-            this.btnRegistrar.TabIndex = 5;
+            this.btnRegistrar.TabIndex = 6;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // label3
             // 
