@@ -30,7 +30,7 @@ namespace PresentacioGUI
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = new Cliente(int.Parse(txtId.Text), txtNombre.Text.Replace(" ", ""), txtApellido.Text, txtTelefono.Text, txtCorreo.Text);
+            Cliente cliente = new Cliente(int.Parse(txtId.Text.Replace(" ", "")), txtNombre.Text, txtApellido.Text, txtTelefono.Text, txtCorreo.Text);
             var msg = servicioCliente.Actualizar(cliente, idTabla.ToString());
 
             var mostrar = new MostrarClientes();         
