@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace PresentacioGUI
 {
-    public partial class MostrarServicios : Form
+    public partial class MostrarEmpleados : Form
     {
-        ServicioServicios servicioServicios = new ServicioServicios();
+        ServicioEmpleado servicioEmpleado = new ServicioEmpleado();
 
-        public MostrarServicios()
+        public MostrarEmpleados()
         {
             InitializeComponent();
             CargarGrilla();
@@ -24,17 +24,19 @@ namespace PresentacioGUI
 
         void CargarGrilla()
         {
-            if (servicioServicios.Mostrar() == null)
+            if (servicioEmpleado.Mostrar() == null)
             {
-                MessageBox.Show("NO HAY SERVICIOS REGISTRADOS", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("NO HAY EMPLEADOS REGISTRADOS", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                foreach (var item in servicioServicios.Mostrar())
+                foreach (var item in servicioEmpleado.Mostrar())
                 {
-                    GrillaServicios.Rows.Add(item.Id_Servicio, item.Nombre, item.Precio);
+                    GrillaEmpleados.Rows.Add(item.Id, item.Nombre, item.Apellido, item.Telefono,
+                    item.Direccion, item.FechaContratacion, item.Salario);
                 }
             }
+
         }
 
         private void GrillaClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)

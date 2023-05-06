@@ -10,10 +10,27 @@ namespace Logica
 {
     public class ServicioServicios : ICrud<Servicios>
     {
-        List<Servicios> ListaServicios;
-        ArchivoServicio archivoServicio = new ArchivoServicio();
+        ArchivoServicio archivoServicio;
 
-        public string Actualizar(Servicios tipo, Servicios tipoDos)
+        public ServicioServicios()
+        {
+            archivoServicio = new ArchivoServicio();
+        }
+
+        public List<Servicios> GetList()
+        {
+            List<Servicios> ListaServicios = archivoServicio.Leer();
+            if (ListaServicios == null)
+            {
+                return null;
+            }
+            else
+            {
+                return ListaServicios;
+            }
+        }
+
+        public string Actualizar(Servicios tipo, string id_tipo)
         {
             throw new NotImplementedException();
         }
@@ -27,15 +44,20 @@ namespace Logica
         {
             try
             {
-
-                var estado = archivoServicio.Guardar(servicio);
-                if (ListaServicios != null)
+                if (GetList() == null)
                 {
-                    VerificarId(servicio);
+                    archivoServicio.Guardar(servicio);
+                    return $"Servicio Guardado Correctamente con nombre: {servicio.Nombre}";
                 }
-
-                return estado ? $"SERVICIO GUARDADO CON NOMBRE: {servicio.Nombre}" :
-                $"ERROR AL GUARDAR EL SERVICIO :{servicio.Nombre.ToUpper()}";
+                else if (Exist(servicio))
+                {
+                    return "ID Repetido";
+                }
+                else
+                {
+                    archivoServicio.Guardar(servicio);
+                    return $"Servicio Guardado Correctamente con nombre: {servicio.Nombre}";
+                }
             }
             catch (Exception e)
             {
@@ -43,28 +65,26 @@ namespace Logica
             }
         }
 
-        public string VerificarId(Servicios servicio)
+        public bool Exist(Servicios servicio)
         {
-            string estado = "No";
             try
             {
-
-                foreach (var item in ListaServicios)
+                //puedes usar var
+                //item es un cliente de la lista
+                Servicios exist = GetList().FirstOrDefault(item => item.Id_Servicio == servicio.Id_Servicio);
+                if (exist == null)
                 {
-                    if (servicio.Id_Servicio.Equals(item.Id_Servicio))
-                    {
-                        estado = "Si";
-
-                    }
+                    return false;
                 }
-
+                else
+                {
+                    return true;
+                }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
-                return e.Message;
+                return false;
             }
-            return estado;
         }
 
         public List<Servicios> Mostrar()

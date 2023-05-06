@@ -23,5 +23,10 @@ namespace Entidades
         public string Direccion { get; set; }
         public DateTime FechaContratacion { get; set; }
         public double Salario { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id};{Nombre};{Apellido};{Telefono};{Direccion};{FechaContratacion};{Salario}";
+        }
     }
 }

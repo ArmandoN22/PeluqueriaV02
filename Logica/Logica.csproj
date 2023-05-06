@@ -45,6 +45,7 @@
     <Compile Include="ICrud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicioCliente.cs" />
+    <Compile Include="ServicioEmpleado.cs" />
     <Compile Include="ServicioServicios.cs" />
   </ItemGroup>
   <ItemGroup>

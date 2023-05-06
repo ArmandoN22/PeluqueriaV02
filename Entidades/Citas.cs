@@ -31,7 +31,6 @@ namespace Entidades
 
         public override string ToString()
         {
-
             return $"{IdCita};{Fecha};{cliente.Id};{Empleado.Id}";
         }
     }

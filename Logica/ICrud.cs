@@ -11,6 +11,6 @@ namespace Logica
         string Guardar(Tipo tipo);
         List<Tipo> Mostrar();
         string Eliminar(Tipo tipo);
-        string Actualizar(Tipo tipo, Tipo tipoDos);
+        string Actualizar(Tipo tipo, string id_tipo);
     }
 }

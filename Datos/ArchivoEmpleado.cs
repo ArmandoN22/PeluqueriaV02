@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class ArchivoServicio : IArchivo<Servicios>
+    public class ArchivoEmpleado : IArchivo<Empleado>
     {
-        string ruta = "servicios.txt";
-        public bool Guardar(Servicios servicio)
+        string ruta = "empleado.txt";
+        public bool Guardar(Empleado empleado)
         {
             try
             {
-                StreamWriter writer = new StreamWriter(ruta, true);
-                writer.WriteLine(servicio.ToString());
-                writer.Close();
+                StreamWriter sw = new StreamWriter(ruta, true);
+                sw.WriteLine(empleado.ToString());
+                sw.Close();
                 return true;
 
             }
@@ -29,12 +29,12 @@ namespace Datos
             }
         }
 
-        public List<Servicios> Leer()
+        public List<Empleado> Leer()
         {
             try
             {
                 StreamReader reader = new StreamReader(ruta);
-                List<Servicios> list = new List<Servicios>();
+                List<Empleado> list = new List<Empleado>();
                 while (!reader.EndOfStream)
                 {
                     string linea = reader.ReadLine();
@@ -49,17 +49,21 @@ namespace Datos
             }
         }
 
-        public Servicios Mapear(string linea)
+        public Empleado Mapear(string linea)
         {
             try
             {
-                var servicio = new Servicios();
+                var empleado = new Empleado();
                 var aux = linea.Split(';');
 
-                servicio.Id_Servicio = int.Parse(aux[0]);
-                servicio.Nombre = aux[1];
-                servicio.Precio = float.Parse(aux[2]);
-                return servicio;
+                empleado.Id = int.Parse(aux[0]);
+                empleado.Nombre = aux[1];
+                empleado.Apellido = aux[2];
+                empleado.Telefono = aux[3];
+                empleado.Direccion = aux[4];
+                empleado.FechaContratacion = DateTime.Parse(aux[5]);
+                empleado.Salario = double.Parse(aux[6]);
+                return empleado;
             }
             catch (Exception)
             {
@@ -68,7 +72,9 @@ namespace Datos
             }
         }
 
-        public bool Modificar(List<Servicios> List)
+        
+
+        public bool Modificar(List<Empleado> List)
         {
             throw new NotImplementedException();
         }

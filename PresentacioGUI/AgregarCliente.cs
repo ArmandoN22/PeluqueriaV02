@@ -49,8 +49,9 @@ namespace PresentacioGUI
                     cliente.Correo = txtCorreo.Text;
                     var mensaje = servicioCliente.Guardar(cliente);
                     MessageBox.Show(mensaje.ToUpper(), "Regristro Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Limpiar(this, panelEstudiantes);
-                    //IdCreciente();
+
+                    Limpiar();
+
                 }
                 catch (Exception e)
                 {
@@ -65,5 +66,20 @@ namespace PresentacioGUI
         {
             this.Dispose();
         }
+
+        private void Limpiar()
+        {
+            txtId.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtApellido.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            txtCorreo.Text = string.Empty;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+
     }
 }

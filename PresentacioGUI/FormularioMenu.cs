@@ -67,6 +67,7 @@ namespace PresentacioGUI
 
         private void btnMostrarEmpleados_Click(object sender, EventArgs e)
         {
+            FormulariosFijo(new MostrarEmpleados());
             OcultarSubMenu();
         }
         #endregion

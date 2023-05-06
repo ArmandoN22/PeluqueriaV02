@@ -5,13 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 using Entidades;
 using Datos;
+using System.IO;
 
 namespace Logica
 {
     public class ServicioCliente : ICrud<Cliente>
     {
-        List<Cliente> ListaCliente;
-        ArchivoCliente archivoCliente = new ArchivoCliente();
+        ArchivoCliente archivoCliente;
+
+
+        public ServicioCliente()
+        {
+            archivoCliente = new ArchivoCliente();
+        }
+
+        
+
+        public List<Cliente> GetList()
+        {
+            List<Cliente> ListaCliente = archivoCliente.Leer();
+            if (ListaCliente == null)
+            {
+                return null;
+            }
+            else
+            {
+                return ListaCliente;
+            }
+        }
 
         public string Actualizar(Cliente tipo, Cliente tipoDos)
         {
@@ -27,15 +48,20 @@ namespace Logica
         {
             try
             {
-
-                var estado = archivoCliente.Guardar(cliente);
-                if (ListaCliente != null)
+                if (GetList() == null)
                 {
-                    VerificarId(cliente);
+                    archivoCliente.Guardar(cliente);
+                    return $"Guardado Correctamente con nombre: {cliente.Nombre}";
                 }
-
-                return estado ? $"CLIENTE GUARDADO CON NOMBRE: {cliente.Nombre}" :
-                $"ERROR AL GUARDAR EL CLIENTE :{cliente.Nombre.ToUpper()}";
+                else if(Exist(cliente))
+                {
+                    return "ID Repetido";
+                }
+                else
+                {
+                    archivoCliente.Guardar(cliente);
+                    return $"Guardado Correctamente con nombre: {cliente.Nombre}";
+                }
             }
             catch (Exception e)
             {
@@ -43,33 +69,36 @@ namespace Logica
             }
         }
 
-        public string VerificarId(Cliente cliente)
+        bool Exist(Cliente cliente)
         {
-            string estado = "No";
             try
             {
-
-                foreach (var item in ListaCliente)
+                //puedes usar var
+                //item es un cliente de la lista
+                Cliente exist = GetList().FirstOrDefault(item => item.Id == cliente.Id);
+                if(exist == null)
                 {
-                    if (cliente.Id.Equals(item.Id))
-                    {
-                        estado = "Si";
-
-                    }
+                    return false;
                 }
-
+                else
+                {
+                    return true;
+                }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
-                return e.Message;
+                return false;
             }
-            return estado;
         }
 
         public List<Cliente> Mostrar()
         {
             return archivoCliente.Leer();
+        }
+
+        public string Actualizar(Cliente tipo, string id_tipo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

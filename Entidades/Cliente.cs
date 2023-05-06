@@ -12,6 +12,10 @@ namespace Entidades
         {
         }
 
+        public Cliente(Cliente cliente)
+        {
+            cliente.Id = Id;
+        }
 
         public Cliente(int id, string nombre, string apellido, string telefono, string correo) : base(id, nombre, apellido, telefono)
         {

@@ -15,15 +15,13 @@ namespace Datos
         {
             try
             {
-                StreamWriter sw = new StreamWriter(ruta, true);
-                sw.WriteLine(cliente.ToString());
-                sw.Close();
+                StreamWriter writer = new StreamWriter(ruta, true);
+                writer.WriteLine(cliente.ToString());
+                writer.Close();
                 return true;
-
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
                 return false;
             }
@@ -39,7 +37,7 @@ namespace Datos
             try
             {
                 StreamReader reader = new StreamReader(ruta);
-                var list = new List<Cliente>();
+                List<Cliente> list = new List<Cliente>();
                 while (!reader.EndOfStream)
                 {
                     string linea = reader.ReadLine();
@@ -75,11 +73,24 @@ namespace Datos
             }
         }
 
-        
-
-        public bool Modificar(List<Cliente> List)
+        public bool Modificar(List<Cliente> Clientes)
         {
-            throw new NotImplementedException();
+            try
+            {
+                StreamWriter sw = new StreamWriter(ruta, false);
+                foreach (var cliente in Clientes)
+                {
+                    sw.WriteLine(cliente.ToString());
+                }
+                sw.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
     }
 }

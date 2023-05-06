@@ -47,8 +47,8 @@ namespace PresentacioGUI
                     servicios.Precio = float.Parse(txtPrecio.Text);
                     var mensaje = servicioServicios.Guardar(servicios);
                     MessageBox.Show(mensaje.ToUpper(), "Regristro Cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Limpiar(this, panelEstudiantes);
-                    //IdCreciente();
+
+                    Limpiar();
                 }
                 catch (Exception e)
                 {
@@ -57,6 +57,24 @@ namespace PresentacioGUI
                 }
 
             }
+        }
+
+        private void Limpiar()
+        {
+            txtId.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtPrecio.Text = string.Empty;
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
     }
 }
