@@ -15,11 +15,13 @@ namespace PresentacioGUI
     public partial class MostrarClientes : Form
     {
         ServicioCliente servicioCliente = new ServicioCliente();
-
+        int datoTabla;
         public MostrarClientes()
         {
             InitializeComponent();
             CargarGrilla();
+            datoTabla = int.Parse(GrillaClientes.Rows[0].Cells[0].Value.ToString());
+            GrillaClientes.CellClick += GrillaClientes_CellClick;
         }
 
         void CargarGrilla()
@@ -38,6 +40,18 @@ namespace PresentacioGUI
             }
 
         }
+        void Eliminar()
+        {
+            if (datoTabla != -1)
+            {
+                string msg = servicioCliente.Eliminar(datoTabla);
+                GrillaClientes.Rows.Clear();
+                GrillaClientes.Refresh();
+                MessageBox.Show(msg);
+                CargarGrilla();
+
+            }
+        }
 
         private void MostrarClientes_Load(object sender, EventArgs e)
         {
@@ -51,10 +65,10 @@ namespace PresentacioGUI
 
         public void Editar()
         {
-            EditarCliente editarCliente = new EditarCliente();
+            EditarCliente editarCliente = new EditarCliente(datoTabla);
             try
             {
-                editarCliente.txtId.Text = GrillaClientes.CurrentRow.Cells[0].Value.ToString();
+                editarCliente.txtId.Text = GrillaClientes.CurrentRow.Cells[0].Value.ToString().Replace(" ", "");
                 editarCliente.txtNombre.Text = GrillaClientes.CurrentRow.Cells[1].Value.ToString();
                 editarCliente.txtApellido.Text = GrillaClientes.CurrentRow.Cells[2].Value.ToString();
                 editarCliente.txtTelefono.Text = GrillaClientes.CurrentRow.Cells[3].Value.ToString();
@@ -75,6 +89,19 @@ namespace PresentacioGUI
             GrillaClientes.Rows.Clear();
             GrillaClientes.Refresh();
             CargarGrilla();
+        }
+
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Eliminar();
+        }
+
+        private void GrillaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int pos = e.RowIndex;
+            DataGridViewRow fila = GrillaClientes.Rows[pos];
+            datoTabla = int.Parse(fila.Cells[0].Value.ToString());
         }
 
         private void GrillaClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)

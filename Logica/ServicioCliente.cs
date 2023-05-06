@@ -19,36 +19,29 @@ namespace Logica
             archivoCliente = new ArchivoCliente();
         }
 
-        
-
-        public List<Cliente> GetList()
+        public string Eliminar(int id_cliente)
         {
-            List<Cliente> ListaCliente = archivoCliente.Leer();
-            if (ListaCliente == null)
+            try
             {
-                return null;
+                var lista = Mostrar();
+                int pos = lista.FindIndex(item => item.Id == id_cliente);
+                string nombre = lista[pos].Nombre;
+                lista.RemoveAt(pos);
+                archivoCliente.Modificar(lista);
+                return $"Se Elimino Correctamente el cliente con nombre: {nombre}";
             }
-            else
-            {
-                return ListaCliente;
+            catch (Exception)
+            {  
+                return "Error!!";
             }
-        }
-
-        public string Actualizar(Cliente tipo, Cliente tipoDos)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Eliminar(Cliente tipo)
-        {
-            throw new NotImplementedException();
+            
         }
 
         public string Guardar(Cliente cliente)
         {
             try
             {
-                if (GetList() == null)
+                if (Mostrar() == null)
                 {
                     archivoCliente.Guardar(cliente);
                     return $"Guardado Correctamente con nombre: {cliente.Nombre}";
@@ -75,7 +68,7 @@ namespace Logica
             {
                 //puedes usar var
                 //item es un cliente de la lista
-                Cliente exist = GetList().FirstOrDefault(item => item.Id == cliente.Id);
+                Cliente exist = Mostrar().FirstOrDefault(item => item.Id == cliente.Id);
                 if(exist == null)
                 {
                     return false;
@@ -91,14 +84,44 @@ namespace Logica
             }
         }
 
-        public List<Cliente> Mostrar()
+        public List<Cliente> Mostrar()//GetList
         {
-            return archivoCliente.Leer();
+            List<Cliente> ListaCliente = archivoCliente.Leer();
+            if (ListaCliente == null)
+            {
+                return null;
+            }
+            else
+            {
+                return ListaCliente;
+            }
         }
 
-        public string Actualizar(Cliente tipo, string id_tipo)
+        public string Actualizar(Cliente cliente_new, string id_cliente)
         {
-            throw new NotImplementedException();
+            var lista = Mostrar();
+            Cliente cliente_old = lista.FirstOrDefault(item => item.Id == int.Parse(id_cliente));
+            if (lista == null)
+            {
+                return "Lista vacia";
+            }else if (cliente_old == null)
+            {
+                return "No se encontro el id";
+            }
+            else if (Exist(cliente_new) && cliente_new.Id != int.Parse(id_cliente))
+            {
+                return "El cliente ingresado ya existe.";
+            }
+            else
+            {
+                cliente_old.Id = cliente_new.Id;
+                cliente_old.Nombre = cliente_new.Nombre;
+                cliente_old.Apellido = cliente_new.Apellido;
+                cliente_old.Telefono = cliente_new.Telefono;
+                cliente_old.Correo = cliente_new.Correo;
+                archivoCliente.Modificar(lista);
+                return "Se ha modificado el cliente";
+            }
         }
     }
 }

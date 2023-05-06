@@ -14,9 +14,12 @@ namespace PresentacioGUI
 {
     public partial class EditarCliente : Form
     {
-        public EditarCliente()
+        ServicioCliente servicioCliente = new ServicioCliente();
+        int idTabla;
+        public EditarCliente(int id)
         {
             InitializeComponent();
+            idTabla = id;
         }
 
 
@@ -27,15 +30,28 @@ namespace PresentacioGUI
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            Cliente cliente = new Cliente(int.Parse(txtId.Text), txtNombre.Text.Replace(" ", ""), txtApellido.Text, txtTelefono.Text, txtCorreo.Text);
+            var msg = servicioCliente.Actualizar(cliente, idTabla.ToString());
 
+            var mostrar = new MostrarClientes();         
+            mostrar.RefrescarGrilla();
+
+            MessageBox.Show(msg);
+            if(msg == "Se ha modificado el cliente")
+            {
+                Hide();
+            }
+            else
+            {
+                txtId.Text = string.Empty;
+            }
         }
 
-        int Id;
+
 
         private void EditarCliente_Load(object sender, EventArgs e)
         {
-            Id = int.Parse(txtId.Text);
-            txtId.Enabled = false;
+           
         }
     }
 }

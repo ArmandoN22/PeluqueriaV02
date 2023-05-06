@@ -35,7 +35,7 @@ namespace Logica
             throw new NotImplementedException();
         }
 
-        public string Eliminar(Servicios tipo)
+        public string Eliminar(int tipo)
         {
             throw new NotImplementedException();
         }

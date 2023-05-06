@@ -77,12 +77,20 @@ namespace Datos
         {
             try
             {
-                StreamWriter sw = new StreamWriter(ruta, false);
-                foreach (var cliente in Clientes)
+
+                if (Clientes.Count == 0 && File.Exists(ruta))
                 {
-                    sw.WriteLine(cliente.ToString());
+                    File.Delete(ruta);
                 }
-                sw.Close();
+                else
+                {
+                    StreamWriter sw = new StreamWriter(ruta, false);
+                    foreach (var cliente in Clientes)
+                    {
+                        sw.WriteLine(cliente.ToString());
+                    }
+                    sw.Close();
+                }
                 return true;
             }
             catch (Exception e)

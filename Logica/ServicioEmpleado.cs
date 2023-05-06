@@ -36,7 +36,7 @@ namespace Logica
             throw new NotImplementedException();
         }
 
-        public string Eliminar(Empleado tipo)
+        public string Eliminar(int tipo)
         {
             throw new NotImplementedException();
         }
