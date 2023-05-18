@@ -30,9 +30,30 @@ namespace Logica
             }
         }
 
-        public string Actualizar(Servicios tipo, string id_tipo)
+        public string Actualizar(Servicios servicio_new, string id_servicios)
         {
-            throw new NotImplementedException();
+            var lista = Mostrar();
+            Servicios servicio_old = lista.FirstOrDefault(item => item.Id_Servicio == int.Parse(id_servicios));
+            if (lista == null)
+            {
+                return "Lista vacia";
+            }
+            else if (servicio_old == null)
+            {
+                return "No se encontro el id";
+            }
+            else if (Exist(servicio_new) && servicio_new.Id_Servicio != int.Parse(id_servicios))
+            {
+                return "El servicio ingresado ya existe.";
+            }
+            else
+            {
+                servicio_old.Id_Servicio = servicio_new.Id_Servicio;
+                servicio_old.Nombre = servicio_new.Nombre;
+                servicio_old.Precio = servicio_new.Precio;
+                archivoServicio.Modificar(lista);
+                return "Se ha modificado el servicio";
+            }
         }
 
         public string Eliminar(int tipo)

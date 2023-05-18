@@ -68,9 +68,32 @@ namespace Datos
             }
         }
 
-        public bool Modificar(List<Servicios> List)
+        public bool Modificar(List<Servicios> servicios)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                if (servicios.Count == 0 && File.Exists(ruta))
+                {
+                    File.Delete(ruta);
+                }
+                else
+                {
+                    StreamWriter sw = new StreamWriter(ruta, false);
+                    foreach (var servicio in servicios)
+                    {
+                        sw.WriteLine(servicio.ToString());
+                    }
+                    sw.Close();
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
     }
 }

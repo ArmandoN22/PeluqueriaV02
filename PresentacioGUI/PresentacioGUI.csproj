@@ -126,6 +126,9 @@
     <EmbeddedResource Include="Opciones_Empleado\AgregarEmpleados.resx">
       <DependentUpon>AgregarEmpleados.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Opciones_Empleado\Editar_Empleados.resx">
+      <DependentUpon>Editar_Empleados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Opciones_Servicios\AgregarServicio.resx">
       <DependentUpon>AgregarServicio.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Opciones_Empleado\MostrarEmpleados.resx">
       <DependentUpon>MostrarEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Opciones_Servicios\Editar_Servicio.resx">
+      <DependentUpon>Editar_Servicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Opciones_Servicios\MostrarServicios.resx">
       <DependentUpon>MostrarServicios.cs</DependentUpon>
