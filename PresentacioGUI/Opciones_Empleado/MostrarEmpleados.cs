@@ -15,6 +15,7 @@ namespace PresentacioGUI
     public partial class MostrarEmpleados : Form
     {
         ServicioEmpleado servicioEmpleado = new ServicioEmpleado();
+        int datoTabla;
 
         public MostrarEmpleados()
         {
@@ -40,6 +41,17 @@ namespace PresentacioGUI
         }
 
         private void GrillaClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
 
         }

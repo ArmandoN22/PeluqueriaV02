@@ -23,12 +23,15 @@ namespace Logica
         {
             try
             {
-                var lista = Mostrar();
-                int pos = lista.FindIndex(item => item.Id == id_cliente);
-                string nombre = lista[pos].Nombre;
-                lista.RemoveAt(pos);
-                archivoCliente.Modificar(lista);
-                return $"Se Elimino Correctamente el cliente con nombre: {nombre}";
+
+                    var lista = Mostrar();
+                    int pos = lista.FindIndex(item => item.Id == id_cliente);
+                    string nombre = lista[pos].Nombre;
+                    lista.RemoveAt(pos);
+                    archivoCliente.Modificar(lista);
+                    return $"Se Elimino Correctamente el cliente con nombre: {nombre}";
+
+
             }
             catch (Exception)
             {  

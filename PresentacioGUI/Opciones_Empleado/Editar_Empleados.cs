@@ -16,5 +16,10 @@ namespace PresentacioGUI
         {
             InitializeComponent();
         }
+
+        private void Editar_Empleados_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

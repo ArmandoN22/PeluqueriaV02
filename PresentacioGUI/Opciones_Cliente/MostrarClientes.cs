@@ -19,8 +19,15 @@ namespace PresentacioGUI
         public MostrarClientes()
         {
             InitializeComponent();
-            CargarGrilla();
-            datoTabla = int.Parse(GrillaClientes.Rows[0].Cells[0].Value.ToString());
+            CargarGrilla(); 
+            if (servicioCliente.Mostrar() == null)
+            {
+            }
+            else
+            {
+                datoTabla = int.Parse(GrillaClientes.Rows[0].Cells[0].Value.ToString());
+            }
+            //datoTabla = int.Parse(GrillaClientes.Rows[0].Cells[0].Value.ToString());
             GrillaClientes.CellClick += GrillaClientes_CellClick;
         }
 
@@ -42,7 +49,11 @@ namespace PresentacioGUI
         }
         void Eliminar()
         {
-            if (datoTabla != -1)
+            if (servicioCliente.Mostrar() == null)
+            {
+                MessageBox.Show("NO HAY CLIENTES PARA ELIMINAR", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (datoTabla != -1)
             {
                 string msg = servicioCliente.Eliminar(datoTabla);
                 GrillaClientes.Rows.Clear();
@@ -51,6 +62,7 @@ namespace PresentacioGUI
                 CargarGrilla();
 
             }
+
         }
 
         private void MostrarClientes_Load(object sender, EventArgs e)
@@ -68,13 +80,20 @@ namespace PresentacioGUI
             EditarCliente editarCliente = new EditarCliente(datoTabla);
             try
             {
-                editarCliente.txtId.Text = GrillaClientes.CurrentRow.Cells[0].Value.ToString().Replace(" ", "");
-                editarCliente.txtNombre.Text = GrillaClientes.CurrentRow.Cells[1].Value.ToString();
-                editarCliente.txtApellido.Text = GrillaClientes.CurrentRow.Cells[2].Value.ToString();
-                editarCliente.txtTelefono.Text = GrillaClientes.CurrentRow.Cells[3].Value.ToString();
-                editarCliente.txtCorreo.Text = GrillaClientes.CurrentRow.Cells[4].Value.ToString(); ;
-                editarCliente.ShowDialog();
-                RefrescarGrilla();
+                if (servicioCliente.Mostrar() == null)
+                {
+                    MessageBox.Show("NO HAY CLIENTES PARA EDITAR", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    editarCliente.txtId.Text = GrillaClientes.CurrentRow.Cells[0].Value.ToString().Replace(" ", "");
+                    editarCliente.txtNombre.Text = GrillaClientes.CurrentRow.Cells[1].Value.ToString();
+                    editarCliente.txtApellido.Text = GrillaClientes.CurrentRow.Cells[2].Value.ToString();
+                    editarCliente.txtTelefono.Text = GrillaClientes.CurrentRow.Cells[3].Value.ToString();
+                    editarCliente.txtCorreo.Text = GrillaClientes.CurrentRow.Cells[4].Value.ToString(); ;
+                    editarCliente.ShowDialog();
+                    RefrescarGrilla();
+                }
             }
             catch (Exception e)
             {
