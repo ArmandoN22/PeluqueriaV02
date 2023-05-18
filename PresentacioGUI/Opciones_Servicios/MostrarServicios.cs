@@ -86,5 +86,23 @@ namespace PresentacioGUI
         {
             Editar();
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            Eliminar();
+        }
+
+        void Eliminar()
+        {
+            if (datoTabla != -1)
+            {
+                string msg = servicioServicios.Eliminar(datoTabla);
+                GrillaServicios.Rows.Clear();
+                GrillaServicios.Refresh();
+                MessageBox.Show(msg);
+                CargarGrilla();
+
+            }
+        }
     }
 }

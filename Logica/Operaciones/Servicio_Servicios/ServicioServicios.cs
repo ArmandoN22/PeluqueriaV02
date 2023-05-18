@@ -56,9 +56,21 @@ namespace Logica
             }
         }
 
-        public string Eliminar(int tipo)
+        public string Eliminar(int id_servicio)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var lista = Mostrar();
+                int pos = lista.FindIndex(item => item.Id_Servicio == id_servicio);
+                string nombre = lista[pos].Nombre;
+                lista.RemoveAt(pos);
+                archivoServicio.Modificar(lista);
+                return $"Se Elimino Correctamente el cliente con nombre: {nombre}";
+            }
+            catch (Exception)
+            {
+                return "Error!!";
+            }
         }
 
         public string Guardar(Servicios servicio)
