@@ -42,11 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="ICrud.cs" />
+    <Compile Include="Crud\Interfaz\ICrud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServicioCliente.cs" />
-    <Compile Include="ServicioEmpleado.cs" />
-    <Compile Include="ServicioServicios.cs" />
+    <Compile Include="Operaciones\Servicio_Cliente\ServicioCliente.cs" />
+    <Compile Include="Operaciones\Servicio_Empleado\ServicioEmpleado.cs" />
+    <Compile Include="Operaciones\Servicio_Servicios\ServicioServicios.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">

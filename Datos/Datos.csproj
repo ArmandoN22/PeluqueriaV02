@@ -41,11 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArchivoCliente.cs" />
-    <Compile Include="ArchivoEmpleado.cs" />
-    <Compile Include="ArchivoLogin.cs" />
-    <Compile Include="ArchivoServicio.cs" />
-    <Compile Include="IArchivo.cs" />
+    <Compile Include="Archivos\Repositorios\ArchivoCliente.cs" />
+    <Compile Include="Archivos\Repositorios\ArchivoEmpleado.cs" />
+    <Compile Include="Archivos\Repositorios\ArchivoLogin.cs" />
+    <Compile Include="Archivos\Repositorios\ArchivoServicio.cs" />
+    <Compile Include="Archivos\Interfaz\IArchivo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
