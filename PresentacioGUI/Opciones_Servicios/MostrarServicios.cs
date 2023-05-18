@@ -20,7 +20,13 @@ namespace PresentacioGUI
         {
             InitializeComponent();
             CargarGrilla();
-            datoTabla = int.Parse(GrillaServicios.Rows[0].Cells[0].Value.ToString());
+            if (servicioServicios.Mostrar() == null)
+            {
+            }
+            else
+            {
+                datoTabla = int.Parse(GrillaServicios.Rows[0].Cells[0].Value.ToString());
+            }
             GrillaServicios.CellClick += GrillaServicios_CellClick;
         }
 
@@ -61,12 +67,18 @@ namespace PresentacioGUI
             Editar_Servicio editarServicio = new Editar_Servicio(datoTabla);
             try
             {
-                editarServicio.txtId.Text = GrillaServicios.CurrentRow.Cells[0].Value.ToString().Replace(" ", "");
-                editarServicio.txtNombre.Text = GrillaServicios.CurrentRow.Cells[1].Value.ToString();
-                editarServicio.txtPrecio.Text = GrillaServicios.CurrentRow.Cells[2].Value.ToString();
-                editarServicio.ShowDialog();
-                RefrescarGrilla();
-
+                if (servicioServicios.Mostrar() == null)
+                {
+                    MessageBox.Show("NO HAY SERVICIOS PARA EDITAR", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    editarServicio.txtId.Text = GrillaServicios.CurrentRow.Cells[0].Value.ToString().Replace(" ", "");
+                    editarServicio.txtNombre.Text = GrillaServicios.CurrentRow.Cells[1].Value.ToString();
+                    editarServicio.txtPrecio.Text = GrillaServicios.CurrentRow.Cells[2].Value.ToString();
+                    editarServicio.ShowDialog();
+                    RefrescarGrilla();
+                }
             }
             catch (Exception e)
             {
@@ -95,7 +107,11 @@ namespace PresentacioGUI
 
         void Eliminar()
         {
-            if (datoTabla != -1)
+            if (servicioServicios.Mostrar() == null)
+            {
+                MessageBox.Show("NO HAY SERVICIOS PARA ELIMINAR", "ALERTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (datoTabla != -1)
             {
                 string msg = servicioServicios.Eliminar(datoTabla);
                 GrillaServicios.Rows.Clear();

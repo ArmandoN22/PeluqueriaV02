@@ -31,14 +31,54 @@ namespace Logica
             }
         }
 
-        public string Actualizar(Empleado tipo, string id_tipo)
+        public string Actualizar(Empleado empleado_new, string id_empleado)
         {
-            throw new NotImplementedException();
+            var lista = Mostrar();
+            Empleado empleado_old = lista.FirstOrDefault(item => item.Id == int.Parse(id_empleado));
+            if (lista == null)
+            {
+                return "Lista vacia";
+            }
+            else if (empleado_old == null)
+            {
+                return "No se encontro el id";
+            }
+            else if (Exist(empleado_new) && empleado_new.Id != int.Parse(id_empleado))
+            {
+                return "El empleado ingresado ya existe.";
+            }
+            else
+            {
+                empleado_old.Id = empleado_new.Id;
+                empleado_old.Nombre = empleado_new.Nombre;
+                empleado_old.Apellido = empleado_new.Apellido;
+                empleado_old.Telefono = empleado_new.Telefono;
+                empleado_old.Direccion = empleado_new.Direccion;
+                empleado_old.FechaContratacion = empleado_new.FechaContratacion;
+                empleado_old.Salario = empleado_new.Salario;
+                archivoEmpleado.Modificar(lista);
+                return "Se ha modificado el empleado";
+            }
         }
 
-        public string Eliminar(int tipo)
+        public string Eliminar(int id_empleado)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                var lista = Mostrar();
+                int pos = lista.FindIndex(item => item.Id == id_empleado);
+                string nombre = lista[pos].Nombre;
+                lista.RemoveAt(pos);
+                archivoEmpleado.Modificar(lista);
+                return $"Se Elimino Correctamente el empleado con nombre: {nombre}";
+
+
+            }
+            catch (Exception)
+            {
+                return "Error!!";
+            }
         }
 
         public string Guardar(Empleado empleado)

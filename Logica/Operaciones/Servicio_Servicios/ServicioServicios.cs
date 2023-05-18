@@ -65,7 +65,7 @@ namespace Logica
                 string nombre = lista[pos].Nombre;
                 lista.RemoveAt(pos);
                 archivoServicio.Modificar(lista);
-                return $"Se Elimino Correctamente el cliente con nombre: {nombre}";
+                return $"Se Elimino Correctamente el servicio con nombre: {nombre}";
             }
             catch (Exception)
             {

@@ -74,9 +74,32 @@ namespace Datos
 
         
 
-        public bool Modificar(List<Empleado> List)
+        public bool Modificar(List<Empleado> Empleados)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                if (Empleados.Count == 0 && File.Exists(ruta))
+                {
+                    File.Delete(ruta);
+                }
+                else
+                {
+                    StreamWriter sw = new StreamWriter(ruta, false);
+                    foreach (var empleado in Empleados)
+                    {
+                        sw.WriteLine(empleado.ToString());
+                    }
+                    sw.Close();
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+                return false;
+            }
         }
     }
 }
