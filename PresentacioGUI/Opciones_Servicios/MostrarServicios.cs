@@ -66,6 +66,7 @@ namespace PresentacioGUI
                 editarServicio.txtPrecio.Text = GrillaServicios.CurrentRow.Cells[2].Value.ToString();
                 editarServicio.ShowDialog();
                 RefrescarGrilla();
+
             }
             catch (Exception e)
             {
