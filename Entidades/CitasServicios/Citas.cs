@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Entidades
@@ -28,7 +29,9 @@ namespace Entidades
         Cliente cliente { get; set; }
         Empleado Empleado { get; set; }
         List<Servicios> Servicios { get; set; }
-
+        public Servicios Nombre_ser { get; set; }
+        public Empleado nombre_em { get; set; }
+        public Cliente nombre_cli { get; set; }
         public override string ToString()
         {
             return $"{IdCita};{Fecha};{cliente.Id};{Empleado.Id}";

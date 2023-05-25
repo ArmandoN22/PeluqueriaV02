@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Opciones_Cita\Agregar_Cita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opciones_Cita\Agregar_Cita.Designer.cs">
+      <DependentUpon>Agregar_Cita.cs</DependentUpon>
+    </Compile>
     <Compile Include="Opciones_Servicios\Editar_Servicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Opciones_Cita\Agregar_Cita.resx">
+      <DependentUpon>Agregar_Cita.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Opciones_Cliente\AgregarCliente.resx">
       <DependentUpon>AgregarCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,5 +197,6 @@
       <Name>Logica</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
